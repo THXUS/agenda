@@ -2,13 +2,26 @@ package br.com.megasoftgyn.projetoversao1.pessoa;
 
 public class PessoaDto {
     
-    private final String nome;
+    private String nome;
     
-    private final String telefone;
+    private String telefone;
     
     public PessoaDto(final Pessoa pessoa) {
         this.nome = pessoa.getNome();
         this.telefone = pessoa.getTelefone();
+    }
+    
+    public PessoaDto(final String nome, final String telefone) {
+        this.nome = nome;
+        this.telefone = telefone;
+    }
+    
+    public PessoaDto() {
+        
+    }
+    
+    public Pessoa build() {
+        return new Pessoa(this.nome, this.telefone);
     }
     
     public String getNome() {

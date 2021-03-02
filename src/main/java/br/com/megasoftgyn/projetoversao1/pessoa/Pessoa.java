@@ -2,6 +2,8 @@ package br.com.megasoftgyn.projetoversao1.pessoa;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,6 +13,7 @@ public class Pessoa {
     
     @Id
     @Column(name = "id", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Column(name = "nome", updatable = true, nullable = false)
@@ -21,6 +24,11 @@ public class Pessoa {
     
     public Pessoa() {
         
+    }
+    
+    public Pessoa(final String nome, final String telefone) {
+        this.nome = nome;
+        this.telefone = telefone;
     }
     
     public Long getId() {

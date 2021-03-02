@@ -20,4 +20,8 @@ public class PessoaRepository {
         final TypedQuery<PessoaDto> typedQuery = this.entityManager.createQuery(sql.toString(), PessoaDto.class);
         return typedQuery.getResultList();
     }
+    
+    public void adicionar(final Pessoa entidade) {
+        this.entityManager.persist(entidade);
+    }
 }
