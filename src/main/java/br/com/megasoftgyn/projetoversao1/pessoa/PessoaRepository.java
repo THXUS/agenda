@@ -31,6 +31,6 @@ public class PessoaRepository {
         if (entidade.isEmpty()) {
             throw new IllegalStateException("Pessoa não encontrada");
         }
-        this.entityManager.remove(entidade);
+        this.entityManager.remove(entidade.get());
     }
 }
