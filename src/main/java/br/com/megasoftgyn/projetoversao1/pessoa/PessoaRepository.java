@@ -24,4 +24,8 @@ public class PessoaRepository {
     public void adicionar(final Pessoa entidade) {
         this.entityManager.persist(entidade);
     }
+    
+    public void excluir(final Pessoa entidade) {
+        this.entityManager.remove(entidade);
+    }
 }
