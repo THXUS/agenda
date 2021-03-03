@@ -1,8 +1,8 @@
-angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope,$http){
+angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope,$http, contatosAPI){
     $scope.app = "Lista Telefônica do teteu ";
     $scope.contatos = [];
     $scope.adicionarContato = function (contato){
-        $http.post("http://localhost:3333/pessoa",contato).then(function(response){
+      contatosAPI.saveContato(contato).then(function(response){
             delete $scope.contato; //deleta os dados que estão no campo do escopo
             $scope.contatoForm.$setPristine();
             carregarContatos();
@@ -24,7 +24,7 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
               $scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;
           };
       var carregarContatos = function(){
-          $http.get("http://localhost:3333/pessoa/todas").then(function(response){
+          contatosAPI.getContatos().then(function(response){
               $scope.contatos = response.data;
           })
       };
