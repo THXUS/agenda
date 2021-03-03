@@ -3,66 +3,12 @@
         <link rel="shortcut icon" href="#">
         <title>Lista Telefonica</title>
         <link rel="stylesheet" type="text/css" href="lib/boostrap/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/app.css">
         <script src="lib/angular/angular.js"></script>
         <script src="lib/angular/angular-messages.js"></script>
         <script src="lib/angular/angular-locale_pt-br.js"></script>
-        <style>
-            .jumbotron {
-                width: 700px;
-                text-align: center;
-                margin: auto;
-                margin-top: 21px ;
-            }
-            .table {
-                margin-top: 20px;
-            }
-            .table tr,th{
-                text-align: center;
-            }
-            .form-control{
-                margin-bottom: 5px;
-
-            }
-            .selecionado{
-                background-color: green;
-            }
-
-        </style>
-        <script>
-            angular.module("listaTelefonica",["ngMessages"]);
-            angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope,$http){
-                  $scope.app = "Lista Telefônica do teteu ";
-                  $scope.contatos = [];
-                  $scope.adicionarContato = function (contato){
-                      $http.post("http://localhost:3333/pessoa",contato).then(function(response){
-                          delete $scope.contato; //deleta os dados que estão no campo do escopo
-                          $scope.contatoForm.$setPristine();
-                          carregarContatos();
-                      });
-                  };
-                    $scope.deletarContatos = function(contatos){
-                          $scope.contatos = contatos.filter(function (contato){
-                              if(!contato.selecionado) return contato;
-                          })
-                          console.log(contatos);
-                      };
-                    $scope.isContatoSelecionado = function(contatos){
-                          return contatos.some(function (contato){
-                              return contato.selecionado;
-                          });
-                        };
-                    $scope.ordenarPor = function(campo){
-                            $scope.criterioDeOrdenacao = campo;
-                            $scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;
-                        };
-                    var carregarContatos = function(){
-                        $http.get("http://localhost:3333/pessoa/todas").then(function(response){
-                            $scope.contatos = response.data;
-                        })
-                    };
-                    carregarContatos();
-            });
-        </script>
+        <script src="js/app.js"></script>
+        <script src="js/controllers/listaTelefonicaCtrl.js"></script>
     </head>
     <body ng-controller="listaTelefonicaCtrl">
         <div class="jumbotron">
@@ -90,7 +36,7 @@
             </form>
         </div>
     </body>
-    <div ng-include="'footer.html'">
+    <div ng-include="'view/footer.html'">
 
     </div>
 </html> 
