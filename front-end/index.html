@@ -1,5 +1,6 @@
 <html ng-app="listaTelefonica">
     <head>
+        <link rel="shortcut icon" href="#">
         <title>Lista Telefonica</title>
         <link rel="stylesheet" type="text/css" href="lib/boostrap/bootstrap.css">
         <script src="lib/angular/angular.js"></script>
@@ -33,9 +34,11 @@
                   $scope.app = "Lista Telefônica do teteu ";
                   $scope.contatos = [];
                   $scope.adicionarContato = function (contato){
-                      $scope.contatos.push(angular.copy(contato));
-                      delete $scope.contato; //deleta os dados que estão no campo do escopo
-                      $scope.contatoForm.$setPristine()
+                      $http.post("http://localhost:3333/pessoa",contato).then(function(response){
+                          delete $scope.contato; //deleta os dados que estão no campo do escopo
+                          $scope.contatoForm.$setPristine();
+                          carregarContatos();
+                      });
                   };
                     $scope.deletarContatos = function(contatos){
                           $scope.contatos = contatos.filter(function (contato){
@@ -77,6 +80,11 @@
                 </tr>
             </table>
             <hr/>
+            <form name="contatoForm">
+                <input class="form-control" type="text" ng-model="contato.nome" name="nome" placeholder="Nome Ex:Matheus"/>
+                <input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Telefone Ex:(xx) xxxx-xxxx"/>
+                <button class=" btn btn-success btn-block" ng-click="adicionarContato(contato)">Adicionar Contato</button>
+            </form>
         </div>
     </body>
     <div ng-include="'footer.html'">
