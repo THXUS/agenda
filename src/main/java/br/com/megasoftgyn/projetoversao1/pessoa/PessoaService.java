@@ -24,4 +24,9 @@ public class PessoaService {
         return entidade.getId();
     }
     
+    @Transactional
+    public void excluir(final Long id) {
+        this.pessoaRepository.excluir(id);
+    }
+    
 }
