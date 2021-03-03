@@ -1,6 +1,7 @@
 package br.com.megasoftgyn.projetoversao1.pessoa;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -25,7 +26,11 @@ public class PessoaRepository {
         this.entityManager.persist(entidade);
     }
     
-    public void excluir(final Pessoa entidade) {
+    public void excluir(final Long id) {
+        final Optional<Pessoa> entidade = Optional.ofNullable(this.entityManager.find(Pessoa.class, id));
+        if (entidade.isEmpty()) {
+            throw new IllegalStateException("Pessoa não encontrada");
+        }
         this.entityManager.remove(entidade);
     }
 }
