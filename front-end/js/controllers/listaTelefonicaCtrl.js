@@ -1,8 +1,10 @@
-angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope, contatosAPI){
+angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope, contatosAPI, serialGenerator){
+    console.log(serialGenerator.generate());
     $scope.app = "Lista Telefônica do teteu ";
     $scope.contatos = [];
     $scope.adicionarContato = function (contato){
-      contatosAPI.saveContato(contato).then(function(response){
+        contato.serial = serialGenerator.generate();
+        contatosAPI.saveContato(contato).then(function(response){
             delete $scope.contato; //deleta os dados que estão no campo do escopo
             $scope.contatoForm.$setPristine();
             carregarContatos();

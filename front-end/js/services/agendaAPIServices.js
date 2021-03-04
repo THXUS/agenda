@@ -4,7 +4,7 @@ angular.module("listaTelefonica").factory("contatosAPI",function ($http, config)
     };
 
     var _saveContato = function (contato){
-        return $http.post("http://localhost:3333/pessoa/",contato);
+        return $http.post(config.baseUrl+"/pessoa/",contato);
     };
 
     return {
