@@ -2,11 +2,14 @@ package br.com.megasoftgyn.projetoversao1.pessoa;
 
 public class PessoaDto {
     
+    private Long id;
+    
     private String nome;
     
     private String telefone;
     
     public PessoaDto(final Pessoa pessoa) {
+        this.id = pessoa.getId();
         this.nome = pessoa.getNome();
         this.telefone = pessoa.getTelefone();
     }
@@ -30,6 +33,10 @@ public class PessoaDto {
     
     public String getTelefone() {
         return this.telefone;
+    }
+    
+    public Long getId() {
+        return this.id;
     }
     
 }
