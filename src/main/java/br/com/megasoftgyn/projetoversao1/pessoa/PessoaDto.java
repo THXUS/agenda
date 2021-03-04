@@ -8,10 +8,13 @@ public class PessoaDto {
     
     private String telefone;
     
+    private String serial;
+    
     public PessoaDto(final Pessoa pessoa) {
         this.id = pessoa.getId();
         this.nome = pessoa.getNome();
         this.telefone = pessoa.getTelefone();
+        this.serial = pessoa.getSerial();
     }
     
     public PessoaDto(final String nome, final String telefone) {
@@ -24,7 +27,7 @@ public class PessoaDto {
     }
     
     public Pessoa build() {
-        return new Pessoa(this.nome, this.telefone);
+        return new Pessoa(this.nome, this.telefone, this.serial);
     }
     
     public String getNome() {
@@ -37,6 +40,10 @@ public class PessoaDto {
     
     public Long getId() {
         return this.id;
+    }
+    
+    public String getSerial() {
+        return this.serial;
     }
     
 }

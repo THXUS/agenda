@@ -22,6 +22,9 @@ public class Pessoa {
     @Column(name = "telefone", updatable = true, nullable = false)
     private String telefone;
     
+    @Column(name = "serial", updatable = true, nullable = true)
+    private String serial;
+    
     public Pessoa() {
         
     }
@@ -29,6 +32,12 @@ public class Pessoa {
     public Pessoa(final String nome, final String telefone) {
         this.nome = nome;
         this.telefone = telefone;
+    }
+    
+    public Pessoa(final String nome, final String telefone, final String serial) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.serial = serial;
     }
     
     public Long getId() {
@@ -53,6 +62,14 @@ public class Pessoa {
     
     public void setTelefone(final String telefone) {
         this.telefone = telefone;
+    }
+    
+    public String getSerial() {
+        return this.serial;
+    }
+    
+    public void setSerial(final String serial) {
+        this.serial = serial;
     }
     
 }
