@@ -1,6 +1,6 @@
-angular.module("listaTelefonica").factory("contatosAPI",function ($http){
+angular.module("listaTelefonica").factory("contatosAPI",function ($http, config){
     var _getContatos = function (){
-        return $http.get("http://localhost:3333/pessoa/todas");
+        return $http.get(config.baseUrl + "/pessoa/todas");
     };
 
     var _saveContato = function (contato){
