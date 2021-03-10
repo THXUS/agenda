@@ -9,14 +9,13 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
             carregarContatos();
         });
     };
-      $scope.deletarContatos = function(contatos){
-            $scope.contatos = contatos.filter(function (contato){
-                if(!contato.selecionado) return contato;
-            })
-            console.log(contatos);
+      $scope.deletarContato = function(contato){
+          $scope.contato = contato.selecionado;
+          console.log(contato);
         };
       $scope.isContatoSelecionado = function(contatos){
             return contatos.some(function (contato){
+                console.log(contato.selecionado);
                 return contato.selecionado;
             });
           };
