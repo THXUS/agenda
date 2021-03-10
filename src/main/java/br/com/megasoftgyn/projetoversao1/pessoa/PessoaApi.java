@@ -25,6 +25,11 @@ public class PessoaApi {
         return "Eai lindão";
     }
     
+    @GetMapping(value = "{id}")
+    public PessoaDto buscar(@PathVariable("id") final Long id) {
+        return this.pessoaService.buscar(id);
+    }
+    
     @GetMapping(path = "todas")
     public List<PessoaDto> listar() {
         return this.pessoaService.listar();

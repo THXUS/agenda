@@ -26,6 +26,14 @@ public class PessoaRepository {
         this.entityManager.persist(entidade);
     }
     
+    public Pessoa buscar(final Long id) {
+        final Optional<Pessoa> entidade = Optional.ofNullable(this.entityManager.find(Pessoa.class, id));
+        if (entidade.isEmpty()) {
+            throw new IllegalStateException("Pessoa não está no banco");
+        }
+        return entidade.get();
+    }
+    
     public void excluir(final Long id) {
         final Optional<Pessoa> entidade = Optional.ofNullable(this.entityManager.find(Pessoa.class, id));
         if (entidade.isEmpty()) {

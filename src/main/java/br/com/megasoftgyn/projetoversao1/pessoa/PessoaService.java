@@ -29,4 +29,9 @@ public class PessoaService {
         this.pessoaRepository.excluir(id);
     }
     
+    @Transactional
+    public PessoaDto buscar(final Long id) {
+        return new PessoaDto(this.pessoaRepository.buscar(id));
+    }
+    
 }
