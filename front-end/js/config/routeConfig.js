@@ -21,6 +21,9 @@ angular.module("listaTelefonica").config(function ($routeProvider,$locationProvi
                 return contatosAPI.getContato($route.current.params.id);
             }
         }
-    })
+    });
+    $routeProvider.when("/error", {
+        templateUrl: "view/error.html"
+    });
     $routeProvider.otherwise({redirectTo: "/contatos"});
 });
