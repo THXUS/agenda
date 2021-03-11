@@ -33,7 +33,7 @@
             track by contato.id">
             <td><input type="checkbox" ng-model="contato.selecionado" ng-selected="verificarContatoSelecionado(contatos)">
             </td>
-            <td> {{::contato.serial | shorter : 5}}</td>
+            <td> {{::contato.serial}}</td>
             <td> <a href="#/detalhesContato/{{contato.id}}"> {{::contato.nome | name}}</a> </td>
             <td>{{::contato.telefone}}</td>
         </tr>
