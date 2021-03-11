@@ -1,6 +1,6 @@
-angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope, contatosAPI, serialGenerator){
+angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope, contatos, serialGenerator){
     $scope.app = "Lista Telefônica do teteu ";
-    $scope.contatos = [];
+    $scope.contatos = contatos.data;
     $scope.adicionarContato = function (contato){
         contato.serial = serialGenerator.generate();
         contatosAPI.saveContato(contato).then(function(response){
@@ -23,12 +23,10 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
               $scope.criterioDeOrdenacao = campo;
               $scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;
           };
-      var carregarContatos = function(){
-          contatosAPI.getContatos().then(function(response){
-              $scope.contatos = response.data;
-          }).catch(function (){
-              $scope.error = "Não foi possível carregar os dados!";
-          })
-      };
-      carregarContatos();
+      var generateSerial = function(contatos){
+          contatos.forEach(function (item){
+              item.serial = serialGenerator.generate();
+          });
+          };
+      generateSerial($scope.contatos);
 });
