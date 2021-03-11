@@ -1,4 +1,4 @@
-angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope, contatos, serialGenerator){
+angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope, $route,contatosAPI, contatos, serialGenerator){
     $scope.app = "Lista Telefônica do teteu ";
     $scope.contatos = contatos.data;
     $scope.adicionarContato = function (contato){
@@ -9,13 +9,20 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
             carregarContatos();
         });
     };
-      $scope.deletarContato = function(contato){
-          $scope.contato = contato.selecionado;
-          console.log(contato);
+      $scope.deletarContato = function(contatos){
+          contatos.filter(function (contato){
+              if(contato.selecionado){
+                  console.log(contato);
+                  contatosAPI.deleteContato(contato).then(function(response){
+                      delete $scope.contato;
+                      $route.reload();
+                  })
+              }
+          });
+          $scope.verificarContatoSelecionado($scope.contatos);
         };
-      $scope.isContatoSelecionado = function(contatos){
-            return contatos.some(function (contato){
-                console.log(contato.selecionado);
+      $scope.verificarContatoSelecionado = function(contatos){
+            $scope.hasContatoSelecionado = contatos.some(function (contato){
                 return contato.selecionado;
             });
           };
@@ -29,4 +36,5 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
           });
           };
       generateSerial($scope.contatos);
+
 });
