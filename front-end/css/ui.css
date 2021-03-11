@@ -36,3 +36,12 @@
 	font-size: 14px;
 	text-align: left;
 }
+
+.spinner-border{
+	
+	width: 3rem;
+	height: 3rem;
+}
+.mt-5{
+	margin-top: 300px !important;
+}
