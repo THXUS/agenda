@@ -1,6 +1,7 @@
-angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope, $route,contatosAPI, contatos, serialGenerator){
+angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope, $route, $filter, contatosAPI, contatos, serialGenerator){
     $scope.app = "Lista Telefônica do teteu ";
     $scope.contatos = contatos.data;
+    $filter('shorter')(contatos.data.serial);
     $scope.adicionarContato = function (contato){
         contato.serial = serialGenerator.generate();
         contatosAPI.saveContato(contato).then(function(response){
