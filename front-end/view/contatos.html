@@ -1,0 +1,29 @@
+<div class="jumbotron">
+    <h3>{{app}}</h3>
+    {{error}}
+
+
+    <input type="text" class="form-control" ng-model="criterioDeBusca" 
+    ng-model-options = "{updateOn: 'default blur', debounce:{default: 500,blur: 0}}"placeholder="Ex: Matheus" />
+    <table class="table table-bordered table-striped">
+        <tr class="elementos">
+            <th></th>
+            <th>Serial</th>
+            <th> <a href="" ng-click="ordenarPor('nome')">Nome</a></th>
+            <th> <a href="" ng-click="ordenarPor('telefone')">Telefone</a></th>
+        </tr>
+        <tr ng-class="{selecionado: contato.selecionado}"
+            ng-repeat="contato in contatos | filter: criterioDeBusca | orderBy: criterioDeOrdenacao :direcaoDaOrdenacao 
+            track by contato.id">
+            <td><input type="checkbox" ng-model="contato.selecionado" ng-selected="verificarContatoSelecionado(contatos)">
+            </td>
+            <td> {{::contato.serial}}</td>
+            <td> <a href="#/detalhesContato/{{contato.id}}"> {{::contato.nome | name}}</a> </td>
+            <td>{{::contato.telefone}}</td>
+        </tr>
+    </table>
+    <a class="btn btn-primary btn-block" href="#/novoContato">NovoContato</a>
+    <button class="btn btn-danger btn-block" ng-click="deletarContato(contatos)" ng-if="hasContatoSelecionado">Apagar
+        Contato</button>
+    <hr />
+</div>
